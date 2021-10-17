@@ -1,0 +1,66 @@
+@startuml
+
+CLASS Universe{
+- n :int
+- bodies: Body[]
+- radi:double
++ Universe(String archivo)
++ Universe(int nBodies)
++ Body[] getBodies()
++ double getRadi()
++ int getN()
++ void increaseTime(double dt)
+}
+
+class Body{
+    - r:Vector
+    -  v:Vector
+    -  mass: double
+    + Body(Vector r, Vector v, double mass)
+    + void move(Vector f, double dt)
+    + Vector getR()
+    + Vector getV()
+    + Vector forceFrom(Body b)
+    +String toString()
+}
+Class NbodySimulator{
++ NBodySimulator(String archivo,double dt,int pausa,boolean trace)
++ NBodySimulator(int nBodies)
++void draw()
++void draw(penRadius)
++void simulate()
++static void main(String[] args)
+  - newton : Universe
+  -d_time : double
+  -pause : int
+  -trazada : boolean
+}
+class vector {
+ -n:int
+ -data:double[]
+ +Vector(int n)
+ +Vector(double[] data)
+ +int length()
+ +double dot(Vector that)
+ +double magnitude()
+ +double distanceTo(Vector that)
+ +Vector plus(Vector that)
+ +Vector minus(Vector that)
+ +double cartesian(int i)
+ +Vector scale(double factor)
+ +Vector direction()
+ +String toString()
+ +static void main(String[] args)
+
+
+}
+
+Universe *-->"1..*" Body: Bodies
+NbodySimulator--> "1"Universe
+
+
+
+
+
+
+@enduml
